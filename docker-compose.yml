@@ -1,0 +1,41 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: banco-backend
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - DB_NAME=${DB_NAME:-banco_andino}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - BACKEND_PORT=${BACKEND_PORT:-3000}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - banco-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: banco-frontend
+    environment:
+      - VITE_API_URL=http://backend:3000/api
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - banco-net
+
+volumes:
+  postgres_data:
+
+networks:
+  banco-net:

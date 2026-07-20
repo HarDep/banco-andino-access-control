@@ -1,0 +1,11 @@
+# Conversaciones para extraer recursos e información en la definición de requisitos y arquitectura
+
+- [Link de conversación](https://claude.ai/share/78add7a2-7a59-44ba-bbfd-0446b8410b67)
+
+## Detalles
+
+1. En la primera conversación se genero un documento word con el cual se queria usar como base para poder detallar los requisitos en forma de historias de usuario, en el chat se proporciono cuales debian ser los requisitos funcionales y no funcionales (resultado del analisis de lo que se obtuvo en las anteriores conversaciones y con el alcance que se definio) de forma que no se generen requisitos no establecidos previamente, además se definio como debe estar estructurado y definido cada historia de usuario, se uso la definicion de alcance redactada y en base a las conversaciones se definieron las descripciones de historias de usuario y criterios de aceptacion. A partir de este, el documento Word con las historias de usuario fue modificado, cambiando aspectos de varias historias de usuario, eliminando una de ellas y definiendo las restricciones y consideraciones (con las preguntas que se podrían realizar). A continuación se encuentra el link al documento (en Google Docs) en donde está el historial de cambios en el mismo:
+
+- [Documento de historias de usuario](https://docs.google.com/document/d/1KhJxqSNB6g9KW4Agkd1LfLOCRPCg6rOj/edit?usp=sharing&ouid=109061872905396985359&rtpof=true&sd=true)
+
+2. En la segunda conversación se uso la definicion de requisitos para que se tuviera información con la cual se pueda obtener una investigacion y analisis para detallar que arquitecturas y tecnologias se pueden usar que beneficios y problemas se pueden presentar, sin definir cual es la mejor opcion, al igual que detallar opciones de diseño en cuanto a patrones de diseño que se pueden usar relacionado con los casos dentro de los requisitos en los cuales seria beneficioso contemplar su implementacion. A partir de este resultado obtenido, se obtuvo un detalle de qué arquitecturas y tecnología se pueden usar e información para contrastarlas para seleccionar la opción más óptima, junto con detalles de diseño que se pueden analizar para diseñar una solución que no solo cumpla con los requisitos, sino que proporcione beneficios adicionales tanto para el alcance actual como para implementaciones posteriores.

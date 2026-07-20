@@ -1,0 +1,14 @@
+{
+  "name": "banco-andino-access-control",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "build": "pnpm run --parallel build",
+    "test": "pnpm run --parallel test",
+    "lint": "pnpm run --parallel lint"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

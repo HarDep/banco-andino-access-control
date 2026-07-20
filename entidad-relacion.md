@@ -87,7 +87,7 @@ erDiagram
         string primer_apellido "required"
         string segundo_apellido
         string telefono
-        string email "required"
+        string email
         string codigo_empleado
         date   fecha_ingreso
         date   fecha_retiro
@@ -112,7 +112,7 @@ erDiagram
     }
     CREDENCIAL_BIOSTAR {
         uuid id PK
-        uuid empleado_id FK
+        uuid empleado_id FK "required"
         string id_biostar "required"
         string tarjeta_rfid "required"
         bool esta_sincronizado "required"

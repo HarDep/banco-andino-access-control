@@ -10,6 +10,8 @@ import { CitiesModule } from './modules/cities/cities.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { SupabaseModule } from './common/supabase/supabase.module';
 import { SupabaseAuthModule } from './common/guards/supabase-auth.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { CapacityModule } from './modules/capacity/capacity.module';
 
 @Module({
   imports: [
@@ -31,6 +33,7 @@ import { SupabaseAuthModule } from './common/guards/supabase-auth.module';
       url: process.env.DB_URL,
       autoLoadEntities: true,
     }),
+    ScheduleModule.forRoot(),
     SupabaseModule,
     SupabaseAuthModule,
     PeopleModule,
@@ -38,6 +41,7 @@ import { SupabaseAuthModule } from './common/guards/supabase-auth.module';
     CountriesModule,
     CitiesModule,
     LocationsModule,
+    CapacityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

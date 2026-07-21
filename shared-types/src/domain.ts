@@ -130,3 +130,22 @@ export interface CreatePersonRecord {
 }
 
 export type UpdatePersonRecord = Partial<CreatePersonRecord>;
+
+export interface EventAccessRecord {
+  personId: string;
+  locationId: string;
+  timestamp: string;
+  tipo: 'ENTRADA' | 'SALIDA';
+  person: PersonRecord;
+  sede: LocationRecord;
+}
+
+export interface CapacityResultRecord {
+  eventos: EventAccessRecord[];
+  aforoPorSede?: {
+    sede: LocationRecord;
+    totalIngresos: number;
+    totalSalidas: number;
+    aforo: number;
+  };
+}

@@ -19,10 +19,12 @@ export class CapacityController {
   events(@Query() query: CapacityQueryDto) {
     const { locationId } = query;
     return this.capacityService.update$.pipe(
-      map(data => 
-        locationId ? CapacityMapper.toCapacityFilteredByLocation(data, locationId) : 
+      map(data => {
+        const result = locationId ? CapacityMapper.toCapacityFilteredByLocation(data, locationId) : 
         data
-      ),
+        console.log('emitting:', result);
+        return result;
+      }),
     );
   }
 }

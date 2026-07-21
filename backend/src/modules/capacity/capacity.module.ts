@@ -22,7 +22,7 @@ import { SupabaseAuthModule } from '../../common/guards/supabase-auth.module';
     CapacityService,
     {
       provide: I_BIOSTAR_CLIENT_TOKEN,
-      useValue: BiostarMockClient,
+      useClass: BiostarMockClient,
     },
   ],
   exports: [I_BIOSTAR_CLIENT_TOKEN],

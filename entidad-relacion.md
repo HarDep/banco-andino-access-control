@@ -78,6 +78,7 @@ erDiagram
         string identificador UK "UK_documento (Parte 1), required"
         uuid id_pais FK, UK "UK_documento (Parte 2), required"
         string descripcion
+        bool activo "required"
     }
     PERSONA {
         uuid id PK

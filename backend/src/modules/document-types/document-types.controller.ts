@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Query } from '@nestjs/common';
 import { DocumentTypesService } from './document-types.service';
 import { CreateDocumentTypeDto } from './dto/create-document-type.dto';
 import { UpdateDocumentTypeDto } from './dto/update-document-type.dto';
@@ -13,22 +13,22 @@ export class DocumentTypesController {
   }
 
   @Get()
-  findAll() {
-    return this.documentTypesService.findAll();
+  findAll(@Query('countryId') countryId?: string) {
+    return this.documentTypesService.findAll(countryId);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.documentTypesService.findOne(+id);
+    return this.documentTypesService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDocumentTypeDto: UpdateDocumentTypeDto) {
-    return this.documentTypesService.update(+id, updateDocumentTypeDto);
+    return this.documentTypesService.update(id, updateDocumentTypeDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.documentTypesService.remove(+id);
+  @Patch(':id/toggle-active')
+  updateCountry(@Param('id') id: string) {
+    return this.documentTypesService.toggleActive(id);
   }
 }

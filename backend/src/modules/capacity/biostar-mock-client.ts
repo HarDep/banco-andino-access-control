@@ -46,8 +46,13 @@ export class BiostarMockClient implements IBioStarClient {
         return [];
       }
       let randomPerson = people[Math.floor(Math.random() * people.length)];
+      let count = 0;
       while (!randomPerson.biostarCredentials) {
         randomPerson = people[Math.floor(Math.random() * people.length)];
+        count++;
+        if (count >= people.length) {
+          return [];
+        }
       }
       const last = await this.eventAccessRepo.findOne({
         where: {

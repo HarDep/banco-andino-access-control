@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Users, FileText, LogOut, Menu, X } from 'lucide-react';
+import { Users, FileText, LogOut, Menu, X, ShieldAlert } from 'lucide-react';
 import { useState } from 'react';
 
 export function Navbar() {
@@ -19,6 +19,7 @@ export function Navbar() {
   const navItems = [
     { path: '/employees', label: 'Empleados', icon: Users },
     { path: '/document-types', label: 'Tipos de Documentos', icon: FileText },
+    { path: '/events', label: 'Eventos de acceso', icon: ShieldAlert },
   ];
 
   if (!user) return null;

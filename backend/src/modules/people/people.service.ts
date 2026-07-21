@@ -182,6 +182,13 @@ export class PeopleService {
       throw new NotFoundException(`Persona con id ${id} no encontrada`);
     }
     person.activo = !person.activo;
+    const biostarCredentials = await this.biostarCredentialsRepository.findOne({
+      where: { empleadoId: id },
+    })
+    if (biostarCredentials) {
+      biostarCredentials.estaSincronizado = false;
+      await this.biostarCredentialsRepository.save(biostarCredentials);
+    }
     const saved = await this.personRepository.save(person);
     return PersonMapper.toResponse(saved);
   }

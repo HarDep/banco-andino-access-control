@@ -8,6 +8,7 @@ import { EmployeeDetail } from './pages/Employees/EmployeeDetail';
 import { EmployeeForm } from './pages/Employees/EmployeeForm';
 import { DocumentTypeList } from './pages/DocumentTypes/DocumentTypeList';
 import { DocumentTypeForm } from './pages/DocumentTypes/DocumentTypeForm';
+import { CapacityDashboard } from './pages/Capacity/CapacityDashboard';
 
 function AppRoutes() {
   const { loading } = useAuth();
@@ -35,6 +36,8 @@ function AppRoutes() {
           <Route path="/document-types" element={<DocumentTypeList />} />
           <Route path="/document-types/create" element={<DocumentTypeForm />} />
           <Route path="/document-types/:id/edit" element={<DocumentTypeForm />} />
+
+          <Route path="/events" element={<CapacityDashboard />} />
         </Route>
       </Route>
 

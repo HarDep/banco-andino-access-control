@@ -9,7 +9,7 @@ import { CountriesModule } from './modules/countries/countries.module';
 import { CitiesModule } from './modules/cities/cities.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { SupabaseModule } from './common/supabase/supabase.module';
-import { SupabaseAuthModule } from './common/guards  /supabase-auth.module';
+import { SupabaseAuthModule } from './common/guards/supabase-auth.module';
 
 @Module({
   imports: [

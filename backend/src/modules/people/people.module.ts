@@ -8,10 +8,14 @@ import { EmployeeLocation } from './entities/employee-location.entity';
 import { DocumentType } from '../document-types/entities/document-type.entity';
 import { Location } from '../locations/entities/location.entity';
 import { BiostarCredentials } from './entities/biostar-credentials.entity';
+import { SupabaseModule } from '../../common/supabase/supabase.module';
+import { SupabaseAuthModule } from '../../common/guards/supabase-auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Person, PersonDocument, EmployeeLocation, DocumentType, Location, BiostarCredentials]),
+    SupabaseModule,
+    SupabaseAuthModule
   ],
   controllers: [PeopleController],
   providers: [PeopleService],

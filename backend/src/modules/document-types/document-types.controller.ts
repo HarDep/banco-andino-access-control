@@ -1,9 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Query, UseGuards } from '@nestjs/common';
 import { DocumentTypesService } from './document-types.service';
 import { CreateDocumentTypeDto } from './dto/create-document-type.dto';
 import { UpdateDocumentTypeDto } from './dto/update-document-type.dto';
+import { SupabaseAuthGuard } from '../../common/guards/supabase-auth.guard';
+import { DocumentTypeQueryDto } from './dto/query-params.dto';
 
 @Controller('document-types')
+@UseGuards(SupabaseAuthGuard)
 export class DocumentTypesController {
   constructor(private readonly documentTypesService: DocumentTypesService) {}
 
@@ -13,8 +16,8 @@ export class DocumentTypesController {
   }
 
   @Get()
-  findAll(@Query('countryId') countryId?: string) {
-    return this.documentTypesService.findAll(countryId);
+  findAll(@Query() query: DocumentTypeQueryDto) {
+    return this.documentTypesService.findAll(query.countryId);
   }
 
   @Get(':id')

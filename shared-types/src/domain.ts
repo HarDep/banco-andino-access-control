@@ -61,7 +61,7 @@ export interface PersonRecord {
   area: string;
   centroCosto: string;
   tipoContrato: string;
-  credencialesBiostar: {
+  credencialesBiostar?: {
     id: string;
     biostarId: string;
     tarjetaRfid: string;

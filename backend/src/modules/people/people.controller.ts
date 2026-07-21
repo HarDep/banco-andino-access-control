@@ -1,9 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Query, UseGuards } from '@nestjs/common';
 import { PeopleService } from './people.service';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
+import { SupabaseAuthGuard } from '../../common/guards/supabase-auth.guard';
+import { PersonQueryDto } from './dto/query-params.dto';
 
 @Controller('people')
+@UseGuards(SupabaseAuthGuard)
 export class PeopleController {
   constructor(private readonly peopleService: PeopleService) {}
 
@@ -13,8 +16,8 @@ export class PeopleController {
   }
 
   @Get()
-  findAll(@Query('sedeId') sedeId?: string, @Query('active') active?: boolean, @Query('idDocumento') idDocumento?: string) { //filtros
-    return this.peopleService.findAll(sedeId, active, idDocumento);
+  findAll(@Query() query: PersonQueryDto) {
+    return this.peopleService.findAll(query.sedeId, query.active, query.idDocumento);
   }
 
   @Get(':id')

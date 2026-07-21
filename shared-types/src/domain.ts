@@ -147,5 +147,5 @@ export interface CapacityResultRecord {
     totalIngresos: number;
     totalSalidas: number;
     aforo: number;
-  };
+  }[];
 }

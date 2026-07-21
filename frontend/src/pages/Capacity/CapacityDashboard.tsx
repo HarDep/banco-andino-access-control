@@ -34,8 +34,10 @@ export function CapacityDashboard() {
   useEffect(() => {
     const loadLocations = async () => {
       try {
-        const data = await locationsService.findAll();
+        const [data, caps] = await Promise.all([locationsService.findAll(), 
+          capacityService.findAll(filters.locationId || filters.startDate || filters.endDate ? filters : {})]);
         setLocations(data);
+        setCapacityData(caps);
       } catch (err: any) {
         setError(err.message || 'Error al cargar sedes');
       }
@@ -218,7 +220,7 @@ export function CapacityDashboard() {
       {capacityData?.aforoPorSede && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Si aforoPorSede es un array, mapearlo; si es un objeto, meterlo en array */}
-          {Array.isArray(aforoPorSede) ? (
+          {Array.isArray(aforoPorSede) && aforoPorSede.length > 1 ? (
             aforoPorSede.map((item) => (
               <div key={item.sede.id} className="card hover:shadow-md transition-shadow">
                 <div className="card-body">
@@ -251,33 +253,33 @@ export function CapacityDashboard() {
               </div>
             ))
           ) : (
-            <>
             // Si es un solo objeto
-            { aforoPorSede && (<div className="card hover:shadow-md transition-shadow">
+            <>
+            { aforoPorSede && aforoPorSede.length && (<div className="card hover:shadow-md transition-shadow">
               <div className="card-body">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-semibold text-slate-900">{aforoPorSede.sede.nombre}</h3>
-                    <p className="text-xs text-slate-500">Código: {aforoPorSede.sede.codigoSede}</p>
+                    <h3 className="font-semibold text-slate-900">{aforoPorSede[0].sede.nombre}</h3>
+                    <p className="text-xs text-slate-500">Código: {aforoPorSede[0].sede.codigoSede}</p>
                   </div>
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    aforoPorSede.aforo > 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'
+                    aforoPorSede[0].aforo > 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'
                   }`}>
-                    {aforoPorSede.aforo} ocupantes
+                    {aforoPorSede[0].aforo} ocupantes
                   </span>
                 </div>
                 <div className="mt-3 grid grid-cols-3 gap-2 text-center text-sm">
                   <div>
                     <p className="text-slate-500">Ingresos</p>
-                    <p className="font-bold text-emerald-600">{aforoPorSede.totalIngresos}</p>
+                    <p className="font-bold text-emerald-600">{aforoPorSede[0].totalIngresos}</p>
                   </div>
                   <div>
                     <p className="text-slate-500">Salidas</p>
-                    <p className="font-bold text-rose-600">{aforoPorSede.totalSalidas}</p>
+                    <p className="font-bold text-rose-600">{aforoPorSede[0].totalSalidas}</p>
                   </div>
                   <div>
                     <p className="text-slate-500">Aforo</p>
-                    <p className="font-bold text-indigo-600">{aforoPorSede.aforo}</p>
+                    <p className="font-bold text-indigo-600">{aforoPorSede[0].aforo}</p>
                   </div>
                 </div>
               </div>
